@@ -47,7 +47,7 @@
                             <a class="nav-link" href="">Contacts</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Shop</a>
+                            <a class="nav-link" href="{{ route('products.index') }}">Shop</a>
                         </li>
                     </ul>
 
@@ -71,8 +71,33 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
+
+                                    <a class="dropdown-item" href="{{ route('admin.index') }}">
+                                        Dashboard
+                                    </a>
+                                </div>
+
+
+
+
+
+
+
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -81,6 +106,9 @@
                                         @csrf
                                     </form>
                                 </div>
+
+
+
                             </li>
                         @endguest
                     </ul>
