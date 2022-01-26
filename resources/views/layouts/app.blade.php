@@ -71,9 +71,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('admin.index') }}">
+                                        Dashboard
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                     document.getElementById('logout-form').submit();">
+                                                                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -82,9 +86,7 @@
                                         @csrf
                                     </form>
 
-                                    <a class="dropdown-item" href="{{ route('admin.index') }}">
-                                        Dashboard
-                                    </a>
+
                                 </div>
 
 
@@ -97,7 +99,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                     document.getElementById('logout-form').submit();">
+                                                                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 

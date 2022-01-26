@@ -26,7 +26,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.products.create');
     }
 
     /**
@@ -37,7 +37,20 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate(
+            [
+                'name' => 'required',
+                'image' => 'required|url',
+                'description' => 'nullable',
+                'price' => 'nullable|numeric',
+                'quantity' => 'nullable|numeric',
+            ]
+
+        );
+
+        Product::create($validateData);
+
+        return redirect()->route('admin.products.index');
     }
 
     /**
@@ -59,7 +72,7 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('admin.products.edit', compact('product'));
     }
 
     /**
@@ -71,7 +84,20 @@ class ProductsController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $validateData = $request->validate(
+            [
+                'name' => 'required',
+                'image' => 'required|url',
+                'description' => 'nullable',
+                'price' => 'nullable|numeric',
+                'quantity' => 'nullable|numeric',
+            ]
+
+        );
+
+        $product->update($validateData);
+
+        return redirect()->route('admin.products.index')->with('message', 'Modifica effettuata con successo');
     }
 
     /**
@@ -82,6 +108,8 @@ class ProductsController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->route('admin.products.index')->with('message', 'Prodotto eliminato con successo');
     }
 }
