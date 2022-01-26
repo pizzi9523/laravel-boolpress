@@ -62,7 +62,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                                         document.getElementById('logout-form').submit();">
+                                                                                                                                                                                                 document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -72,6 +72,8 @@
                                     </form>
                                 </div>
                             </li>
+
+
                         @endguest
                     </ul>
                 </div>
@@ -88,7 +90,7 @@
                 <div class="logout text-white">
                     <a class="nav-link" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
-                                                                                                        document.getElementById('logout-form').submit();">
+                                                                                                                                document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
 
@@ -129,7 +131,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{ route('admin.products.index') }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round" class="feather feather-shopping-cart"
