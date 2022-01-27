@@ -40,6 +40,21 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
+            <div class="form-group">
+                <label for="category_id">Categoria</label>
+                <select class="form-control" name="category_id" id="category_id">
+                    <option selected disabled>Select a Category</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}"
+                            {{ $category->id == old('category', $post->category_id) ? 'selected' : '' }}>
+                            {{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            @error('title')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+
             <button class="btn btn-primary" type="submit">Modifica</button>
 
         </form>
