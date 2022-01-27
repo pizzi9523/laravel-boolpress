@@ -10,8 +10,10 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $product->name }}</h5>
                     <p class="card-text">{{ $product->description }}</p>
-                    <p>Prezzo: <span>{{ $product->price }}</span></p>
+                    <p>Prezzo: <span>{{ $product->price }}€</span></p>
                     <p>Quantità: <span>{{ $product->quantity }}</span></p>
+                    <a class="btn btn-warning btn-lg btn-block" href="">Acquista</a>
+
                 </div>
             </div>
 
