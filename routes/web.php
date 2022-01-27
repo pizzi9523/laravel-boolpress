@@ -19,6 +19,8 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::resource('products', 'ProductController')->only(['index', 'show']);
+Route::resource('posts', 'PostController')->only(['index', 'show']);
+
 
 Auth::routes();
 
@@ -26,4 +28,5 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
 
     Route::get('/', 'HomeController@index')->name('index');
     Route::resource('products', 'ProductController');
+    Route::resource('posts', 'PostController');
 });

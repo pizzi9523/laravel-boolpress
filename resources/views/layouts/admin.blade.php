@@ -16,6 +16,9 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Styles -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
@@ -39,7 +42,7 @@
                     <div class="logout text-white">
                         <a class="nav-link " href="{{ route('logout') }}"
                             onclick="event.preventDefault();
-                                                                                                                                                                                                                        document.getElementById('logout-form').submit();">
+                                                                                                                                                                                                                                                        document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
 
@@ -87,16 +90,17 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{ route('admin.posts.index') }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="feather feather-users" aria-hidden="true">
-                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                        <circle cx="9" cy="7" r="4"></circle>
-                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                        stroke-linejoin="round" class="feather feather-file-text" aria-hidden="true">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10 9 9 9 8 9"></polyline>
                                     </svg>
-                                    Customers
+                                    Blog
                                 </a>
                             </li>
 
