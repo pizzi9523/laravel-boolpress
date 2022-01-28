@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Post;
 use App\Tag;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -18,7 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id', 'desc')->paginate(10);
+        $posts = Auth::user()->posts()->orderBy('id', 'desc')->paginate(10);
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -52,7 +53,11 @@ class PostController extends Controller
 
         );
 
+
+        $validateData['user_id'] = Auth::id();
+        // ddd($validateData);
         $post = Post::create($validateData);
+
         if ($request->has('tags')) {
             $request->validate([
                 'tags' => 'nullable|exists:tags,id'
@@ -85,7 +90,11 @@ class PostController extends Controller
     {
         $tags = Tag::all();
         $categories = Category::all();
-        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
+        if (Auth::id() === $post->user_id) {
+            return view('admin.posts.edit', compact('post', 'categories', 'tags'));
+        } else {
+            abort(403);
+        }
     }
 
     /**
@@ -97,25 +106,30 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $validateData = $request->validate(
-            [
-                'title' => [
-                    'required',
-                    'max:255',
-                    Rule::unique('posts')->ignore($post->id),
-                ],
-                'image' => 'required|url',
-                'body' => 'nullable',
-                'category_id' => 'nullable|exists:categories,id',
-                'tags' => 'exists:tags,id'
-            ]
+        if (Auth::id() === $post->user_id) {
 
-        );
+            $validateData = $request->validate(
+                [
+                    'title' => [
+                        'required',
+                        'max:255',
+                        Rule::unique('posts')->ignore($post->id),
+                    ],
+                    'image' => 'required|url',
+                    'body' => 'nullable',
+                    'category_id' => 'nullable|exists:categories,id',
+                    'tags' => 'exists:tags,id'
+                ]
 
-        $post->update($validateData);
-        $post->tags()->sync($request->tags);
+            );
 
-        return redirect()->route('admin.posts.index')->with('message', 'Modifica effettuata con successo');
+            $post->update($validateData);
+            $post->tags()->sync($request->tags);
+
+            return redirect()->route('admin.posts.index')->with('message', 'Modifica effettuata con successo');
+        } else {
+            abort(403);
+        }
     }
 
     /**
@@ -126,8 +140,13 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post->delete();
+        if (Auth::id() === $post->user_id) {
 
-        return redirect()->route('admin.posts.index')->with('message', 'Post eliminato con successo');
+            $post->delete();
+
+            return redirect()->route('admin.posts.index')->with('message', 'Post eliminato con successo');
+        } else {
+            abort(403);
+        }
     }
 }
