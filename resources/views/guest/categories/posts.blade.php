@@ -15,14 +15,7 @@
                                 <h5 class="card-title">{{ $post->title }}</h5>
                                 <p class="card-text">{{ $post->body }}</p>
                                 <p class="card-text">Categoria:
-
-                                    @if ($post->category)
-                                        <a
-                                            href="{{ route('categories.posts', $post->category->id) }}">{{ $post->category->name }}</a>
-                                    @else
-                                        <p>Uncategorized</p>
-                                    @endif
-                                </p>
+                                    {{ $post->category ? $post->category->name : 'Uncategorized' }}</p>
 
                             </div>
                         </div>

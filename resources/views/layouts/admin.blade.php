@@ -40,9 +40,8 @@
                         </div>
                     </div>
                     <div class="logout text-white">
-                        <a class="nav-link " href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                                                                                                                                                                                                                                        document.getElementById('logout-form').submit();">
+                        <a class="nav-link " href="{{ route('logout') }}" onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
 
@@ -100,7 +99,7 @@
                                         <line x1="16" y1="17" x2="8" y2="17"></line>
                                         <polyline points="10 9 9 9 8 9"></polyline>
                                     </svg>
-                                    Blog
+                                    Blogs
                                 </a>
                             </li>
 

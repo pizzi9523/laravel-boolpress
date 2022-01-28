@@ -36,13 +36,21 @@
                         <td>{{ $post->title }}</td>
                         <td><img width="100" height="80" src="{{ $post->image }}" alt=""></td>
                         <td>{{ $post->body }}</td>
-                        <td>{{ $post->category ? $post->category->name : 'Uncategorized' }}</td>
+                        <td>
+                            @if ($post->category)
+                                <a
+                                    href="{{ route('categories.posts', $post->category->id) }}">{{ $post->category->name }}</a>
+                            @else
+                                <p>Uncategorized</p>
+                            @endif
+                        </td>
 
                         <td>{{ $post->created_at }}</td>
                         <td>{{ $post->updated_at }}</td>
 
                         <td>
-                            <a class="btn btn-primary" href="{{ route('posts.show', $post->id) }}" role="button">Visita</a>
+                            <a class="btn btn-primary" href="{{ route('posts.show', $post->id) }}"
+                                role="button">Visita</a>
                         </td>
                         <td>
                             <a class="btn btn-primary" href="{{ route('admin.posts.edit', $post->id) }}"

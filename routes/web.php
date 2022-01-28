@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 Route::resource('products', 'ProductController')->only(['index', 'show']);
 Route::resource('posts', 'PostController')->only(['index', 'show']);
+Route::get('categories/{category}/posts', 'CategoryController@posts')->name('categories.posts');
 
 
 Auth::routes();
