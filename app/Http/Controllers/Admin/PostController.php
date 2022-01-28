@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id', 'desc')->get();
+        $posts = Post::orderBy('id', 'desc')->paginate(10);
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -107,12 +107,13 @@ class PostController extends Controller
                 'image' => 'required|url',
                 'body' => 'nullable',
                 'category_id' => 'nullable|exists:categories,id',
-
+                'tags' => 'exists:tags,id'
             ]
 
         );
 
         $post->update($validateData);
+        $post->tags()->sync($request->tags);
 
         return redirect()->route('admin.posts.index')->with('message', 'Modifica effettuata con successo');
     }

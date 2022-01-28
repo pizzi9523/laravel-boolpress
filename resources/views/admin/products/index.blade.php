@@ -8,7 +8,7 @@
     @endif
 
     <div class="table-responsive">
-        <a class="btn btn-dark mt-5 mb-4" href="{{ route('admin.products.create') }}" role="button">Add Product</a>
+        <a class="btn btn-dark mt-4 mb-4" href="{{ route('admin.products.create') }}" role="button">Add Product</a>
         <table class="table table-striped table-sm">
             <thead>
                 <tr>

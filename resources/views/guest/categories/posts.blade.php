@@ -21,9 +21,9 @@
                                     @if (count($post->tags) > 0)
                                         @foreach ($post->tags as $tag)
                                             {{ $tag->name }}
-                                            @if ($loop->last && count($post->tags) > 1)
+                                            {{-- @if ($loop->last && count($post->tags) > 1)
                                                 {{ $tag->name }}
-                                            @endif
+                                            @endif --}}
                                         @endforeach
                                     @else
                                         <span>No tags</span>

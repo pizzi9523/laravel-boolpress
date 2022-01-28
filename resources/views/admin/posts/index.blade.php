@@ -8,7 +8,7 @@
     @endif
 
     <div class="table-responsive">
-        <a class="btn btn-dark mt-5 mb-4" href="{{ route('admin.posts.create') }}" role="button">Add post</a>
+        <a class="btn btn-dark mt-4 mb-4" href="{{ route('admin.posts.create') }}" role="button">Add post</a>
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
@@ -106,6 +106,10 @@
 
             </tbody>
         </table>
+    </div>
+
+    <div>
+        {{ $posts->links() }}
     </div>
 
 @endsection
