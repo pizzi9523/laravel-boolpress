@@ -12,6 +12,20 @@
                     <p class="card-text">{{ $post->body }}</p>
                     <p class="card-text">Categoria: {{ $post->category ? $post->category->name : 'Uncategorized' }}
                     </p>
+                    <p class="card-text">
+                        Tags:
+                        @if (count($post->tags) > 0)
+                            @foreach ($post->tags as $tag)
+                                {{ $tag->name }},
+                                @if ($loop->last)
+                                    {{ $tag->name }}
+                                @endif
+                            @endforeach
+                        @else
+                            <span>No tags</span>
+                        @endif
+                    </p>
+
 
                 </div>
             </div>

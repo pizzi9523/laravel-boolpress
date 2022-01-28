@@ -52,7 +52,20 @@
                     @endforeach
                 </select>
             </div>
-            @error('title')
+
+            <div class="form-check py-2">
+                Select a Tag:
+                @foreach ($tags as $tag)
+                    <label class="form-check-label mx-4">
+                        <input type="checkbox" class="form-check-input" name="tags[]" id="tags"
+                            value="{{ $tag->id }}">
+                        {{ $tag->name }}
+
+                    </label>
+                @endforeach
+
+            </div>
+            @error('tags')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
