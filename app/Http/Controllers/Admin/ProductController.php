@@ -89,7 +89,7 @@ class ProductController extends Controller
                 'name' => 'required',
                 'image' => 'required|url',
                 'description' => 'nullable',
-                'price' => 'nullable|numeric',
+                'price' => 'nullable|numeric|max:999999,99',
                 'quantity' => 'nullable|numeric',
             ]
 

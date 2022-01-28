@@ -16,10 +16,13 @@
                     <th scope="col">Titolo</th>
                     <th scope="col">Immagine</th>
                     <th scope="col">Contenuto</th>
+                    <th scope="col">Categoria</th>
                     <th scope="col">Creato il</th>
                     <th scope="col">Aggiornato il</th>
                     <th scope="col">Opzioni </th>
                     <th scope="col"> </th>
+                    <th scope="col"> </th>
+
 
 
 
@@ -33,8 +36,14 @@
                         <td>{{ $post->title }}</td>
                         <td><img width="100" height="80" src="{{ $post->image }}" alt=""></td>
                         <td>{{ $post->body }}</td>
+                        <td>{{ $post->category ? $post->category->name : 'Uncategorized' }}</td>
+
                         <td>{{ $post->created_at }}</td>
                         <td>{{ $post->updated_at }}</td>
+
+                        <td>
+                            <a class="btn btn-primary" href="{{ route('posts.show', $post->id) }}" role="button">Visita</a>
+                        </td>
                         <td>
                             <a class="btn btn-primary" href="{{ route('admin.posts.edit', $post->id) }}"
                                 role="button">Modifica</a>
