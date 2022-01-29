@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('id', 'desc')->get();
         return view('guest.posts.index', compact('posts'));
     }
 
@@ -31,6 +31,5 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return view('guest.posts.show', compact("post"));
-
     }
 }
