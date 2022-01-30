@@ -21,9 +21,11 @@ Route::get('/', function () {
 Route::resource('products', 'ProductController')->only(['index', 'show']);
 Route::resource('posts', 'PostController')->only(['index', 'show']);
 Route::get('categories/{category}/posts', 'CategoryController@posts')->name('categories.posts');
+Route::get('tags/{tag}/posts', 'TagController@posts')->name('tags.posts');
 
 
-Auth::routes();
+
+Auth::routes(['register => false']);
 
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
 
@@ -31,4 +33,5 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     Route::resource('products', 'ProductController');
     Route::resource('posts', 'PostController');
     Route::resource('categories', 'CategoryController');
+    Route::resource('tags', 'TagController');
 });
