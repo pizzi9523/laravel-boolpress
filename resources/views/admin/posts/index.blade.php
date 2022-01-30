@@ -6,6 +6,7 @@
             {{ session('message') }}
         </div>
     @endif
+    <h1 class="mt-5">Posts</h1>
 
     <div class="table-responsive">
         <a class="btn btn-dark mt-4 mb-4" href="{{ route('admin.posts.create') }}" role="button">Add post</a>
