@@ -35,7 +35,7 @@
                     <tr>
                         <td>{{ $post->id }}</td>
                         <td>{{ $post->title }}</td>
-                        <td><img width="100" height="80" src="{{ $post->image }}" alt=""></td>
+                        <td><img width="100" height="80" src="{{ asset('storage/' . $post->image) }}" alt=""></td>
                         <td>{{ $post->body }}</td>
                         <td>
                             @if ($post->category)
@@ -60,8 +60,8 @@
 
                         <td>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-danger " data-toggle="modal"
-                                data-target="#delete{{ $post->id }}">
+                            <button type="button" class="btn btn-danger " data-bs-toggle="modal"
+                                data-bs-target="#delete{{ $post->id }}">
                                 Elimina
                             </button>
 
@@ -72,9 +72,8 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title">Eliminare {{ $post->name }}?</h5>
-                                            <button type="button" class="close" data-dismiss="modal"
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
@@ -82,7 +81,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
+                                                data-bs-dismiss="modal">Close</button>
                                             <form action="{{ route('admin.posts.destroy', $post->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')

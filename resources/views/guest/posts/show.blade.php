@@ -6,7 +6,8 @@
         <div class="row justify-content-center">
 
             <div class="card" style="width: 40rem;">
-                <img style="max-height: 550px;" src="{{ $post->image }}" class="card-img-top" alt="...">
+                <img style="max-height: 550px;" src="{{ asset('storage/' . $post->image) }}" class="card-img-top"
+                    alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{ $post->title }}</h5>
                     <p class="card-text">{{ $post->body }}</p>

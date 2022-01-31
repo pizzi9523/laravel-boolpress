@@ -8,6 +8,7 @@ use App\Tag;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class PostController extends Controller
@@ -46,12 +47,17 @@ class PostController extends Controller
         $validateData = $request->validate(
             [
                 'title' => 'required|unique:posts',
-                'image' => 'required|url',
+                'image' => 'required|image',
                 'body' => 'nullable',
                 'category_id' => 'nullable|exists:categories,id',
             ]
 
         );
+
+        if ($request->file('image')) {
+            $img_path = $request->file('image')->store('post-img');
+            $validateData['image'] = $img_path;
+        }
 
 
         $validateData['user_id'] = Auth::id();
@@ -115,13 +121,20 @@ class PostController extends Controller
                         'max:255',
                         Rule::unique('posts')->ignore($post->id),
                     ],
-                    'image' => 'required|url',
+                    'image' => 'required|image',
                     'body' => 'nullable',
                     'category_id' => 'nullable|exists:categories,id',
                     'tags' => 'exists:tags,id'
                 ]
 
             );
+            if ($request->file('image')) {
+
+                Storage::delete($post->image);
+                $img_path = $request->file('image')->store('post-img');
+                $validateData['image'] = $img_path;
+            }
+
 
             $post->update($validateData);
             $post->tags()->sync($request->tags);
@@ -142,6 +155,7 @@ class PostController extends Controller
     {
         if (Auth::id() === $post->user_id) {
 
+            Storage::delete($post->image);
             $post->delete();
 
             return redirect()->route('admin.posts.index')->with('message', 'Post eliminato con successo');

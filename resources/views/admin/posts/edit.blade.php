@@ -8,7 +8,7 @@
                 {{ session('message') }}
             </div>
         @endif
-        <form action="{{ route('admin.posts.update', $post->id) }}" method="post">
+        <form action="{{ route('admin.posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -21,15 +21,23 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
-            <div class="mb-3">
-                <label for="image" class="form-label">Immmagine</label>
-                <input type="text" name="image" id="image" class="form-control" placeholder="Inserisci URL immagine"
-                    aria-describedby="helpImage" value="{{ $post->image }}">
-                <small id="helpImage" class="text-muted">URL esempio: https://picsum.photos/200/300</small>
+            <div class="row mb-3">
+                <div class="col-2">
+                    <img style="width: 100%; " src="{{ asset('storage/' . $post->image) }}" alt="">
+                </div>
+                <div class="col-10">
+                    <div class=" ">
+                        <label for="image" class="form-label">Immmagine</label>
+
+                        <input type="file" name="image" id="image" class="form-control" placeholder="Carica un'immagine"
+                            aria-describedby="helpImage">
+                    </div>
+                    @error('image')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
-            @error('image')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
+
 
             <div class="mb-3">
                 <label for="body" class="form-label">Descrizione Post</label>

@@ -12,7 +12,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('admin.posts.store') }}" method="post">
+        <form action="{{ route('admin.posts.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Titolo</label>
@@ -26,9 +26,9 @@
 
             <div class="mb-3">
                 <label for="image" class="form-label">Immmagine</label>
-                <input type="text" name="image" id="image" class="form-control" placeholder="Inserisci URL immagine"
-                    aria-describedby="helpImage" value="{{ old('image') }}">
-                <small id="helpImage" class="text-muted">URL esempio: https://picsum.photos/200/300</small>
+
+                <input type="file" name="image" id="image" class="form-control" placeholder="Carica un'immagine"
+                    aria-describedby="helpImage">
             </div>
             @error('image')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -57,8 +57,7 @@
                 Select a Tag:
                 @foreach ($tags as $tag)
                     <label class="form-check-label mx-4">
-                        <input type="checkbox" class="form-check-input" name="tags[]" id="tags"
-                            value="{{ $tag->id }}">
+                        <input type="checkbox" class="form-check-input" name="tags[]" id="tags" value="{{ $tag->id }}">
                         {{ $tag->name }}
 
                     </label>
