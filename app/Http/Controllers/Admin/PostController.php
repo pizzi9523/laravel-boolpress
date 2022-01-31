@@ -128,11 +128,15 @@ class PostController extends Controller
                 ]
 
             );
+
+            $default_image_path = "post-img/t1LygGlKztPeFEugzjwIqqliwhSVRDcW8QAyi9dx.png";
             if ($request->file('image')) {
 
-                Storage::delete($post->image);
                 $img_path = $request->file('image')->store('post-img');
                 $validateData['image'] = $img_path;
+                if ($post->image  !== $default_image_path) {
+                    Storage::delete($post->image);
+                }
             }
 
 
