@@ -39,7 +39,7 @@
                                 @csrf
                                 @method('PATCH')
 
-                                <input type="text" class="form-control border-0" name="name" id="name"
+                                <input type="text" class="form-control border-0 bg-white" name="name" id="name"
                                     aria-describedby="helpId" value="{{ $tag->name }}">
                             </form>
                             <span

@@ -25,7 +25,7 @@ Route::get('tags/{tag}/posts', 'TagController@posts')->name('tags.posts');
 
 
 
-Auth::routes(['register' => false]);
+Auth::routes();
 
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
 
