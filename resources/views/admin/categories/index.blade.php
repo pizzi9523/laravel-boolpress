@@ -37,7 +37,7 @@
                                     aria-describedby="helpId" value="{{ $category->name }}">
                             </form>
                             <span
-                                class="badge badge-pill rounded-circle badge-secondary mx-4">{{ count($category->posts) }}</span>
+                                class="badge badge-pill rounded-circle badge-secondary text-dark mx-4">{{ count($category->posts) }}</span>
 
                             <form action="{{ route('admin.categories.destroy', $category->id) }}" method="post">
                                 @csrf

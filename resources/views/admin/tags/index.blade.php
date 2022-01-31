@@ -43,7 +43,7 @@
                                     aria-describedby="helpId" value="{{ $tag->name }}">
                             </form>
                             <span
-                                class="badge badge-warning rounded-circle badge-info mx-4">{{ count($tag->posts) }}</span>
+                                class="badge badge-warning rounded-circle badge-info text-dark mx-4">{{ count($tag->posts) }}</span>
 
                             <form action="{{ route('admin.tags.destroy', $tag->id) }}" method="post">
                                 @csrf
