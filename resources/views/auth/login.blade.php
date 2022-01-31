@@ -1,4 +1,4 @@
- mb-2@extends('layouts.app')
+ @extends('layouts.app')
 
  @section('content')
      <div class="container">
