@@ -30,6 +30,6 @@ class ContactFormMailable extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contactEmail');
+        return $this->from('noreply@example.com')->markdown('emails.contactEmail');
     }
 }
