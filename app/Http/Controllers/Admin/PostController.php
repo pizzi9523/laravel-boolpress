@@ -121,7 +121,7 @@ class PostController extends Controller
                         'max:255',
                         Rule::unique('posts')->ignore($post->id),
                     ],
-                    'image' => 'required|image',
+                    'image' => 'image',
                     'body' => 'nullable',
                     'category_id' => 'nullable|exists:categories,id',
                     'tags' => 'exists:tags,id'
