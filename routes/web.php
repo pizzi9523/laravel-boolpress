@@ -20,8 +20,11 @@ Route::get('/', function () {
 
 Route::resource('products', 'ProductController')->only(['index', 'show']);
 Route::resource('posts', 'PostController')->only(['index', 'show']);
+
 Route::get('categories/{category}/posts', 'CategoryController@posts')->name('categories.posts');
 Route::get('tags/{tag}/posts', 'TagController@posts')->name('tags.posts');
+Route::get('contacts', 'PageController@index')->name('contacts');
+Route::post('contacts', 'PageController@sendForm')->name('contacts.send');
 
 
 
