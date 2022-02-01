@@ -107,6 +107,7 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+        return redirect()->route('admin.contacts.index')->with('message', 'Messaggio eliminato dal database');
     }
 }

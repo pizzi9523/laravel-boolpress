@@ -1,23 +1,24 @@
 @extends('layouts.app')
 @section('content')
 
-    @if (session('message'))
-        <div class="alert alert-success" role="alert">
-            <strong>{{ session('message') }}</strong>
-        </div>
-    @endif
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
     <div class="container">
+        @if (session('message'))
+            <div class="alert alert-success" role="alert">
+                <strong>{{ session('message') }}</strong>
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="p-5 bg-primary text-light rounded mb-4">
             <h1 class="display-3">Contattaci</h1>
             <p class="lead">Inviaci un messaggio</p>

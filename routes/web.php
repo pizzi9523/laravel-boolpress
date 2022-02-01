@@ -37,5 +37,5 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     Route::resource('posts', 'PostController');
     Route::resource('categories', 'CategoryController');
     Route::resource('tags', 'TagController');
-    Route::resource('contacts', 'ContactController');
+    Route::resource('contacts', 'ContactController')->only(['index', 'destroy']);
 });

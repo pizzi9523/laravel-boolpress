@@ -43,35 +43,36 @@
                                 role="button">Modifica</a>
                         </td> --}}
 
-                        {{-- <td>
+                        <td>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-danger " data-bs-toggle="modal"
-                                data-bs-target="#delete{{ $post->id }}">
-                                Elimina
+                            <button type="button" class="btn btn-danger text-light" data-bs-toggle="modal"
+                                data-bs-target="#delete{{ $contact->id }}">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="delete{{ $post->id }}" tabindex="-1" role="dialog"
-                                aria-labelledby="{{ $post->id }}" aria-hidden="true">
+                            <div class="modal fade" id="delete{{ $contact->id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="{{ $contact->id }}" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Eliminare {{ $post->name }}?</h5>
+                                            <h5 class="modal-title">Eliminare il messaggio?</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close">
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            Attenzione stai eliminando un post definitivamente ⚠️
+                                            Eliminare il messaggio di {{ $contact->name . ' ' . $contact->email }} ⚠️
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Close</button>
-                                            <form action="{{ route('admin.posts.destroy', $post->id) }}" method="post">
+                                            <form action="{{ route('admin.contacts.destroy', $contact->id) }}"
+                                                method="post">
                                                 @csrf
                                                 @method('DELETE')
 
-                                                <button class="btn btn-danger" type="submit">Elimina</button>
+                                                <button class="btn btn-danger text-light" type="submit">Elimina</button>
 
 
                                             </form>
@@ -81,7 +82,7 @@
                             </div>
 
 
-                        </td> --}}
+                        </td>
 
 
 
