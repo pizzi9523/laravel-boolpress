@@ -1,6 +1,12 @@
 @extends('layouts.app')
 @section('content')
 
+    @if (session('message'))
+        <div class="alert alert-success" role="alert">
+            <strong>{{ session('message') }}</strong>
+        </div>
+    @endif
+
     <div class="container">
         <div class="p-5 bg-primary text-light rounded mb-4">
             <h1 class="display-3">Contattaci</h1>
