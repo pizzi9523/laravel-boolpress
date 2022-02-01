@@ -7,6 +7,16 @@
         </div>
     @endif
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="container">
         <div class="p-5 bg-primary text-light rounded mb-4">
             <h1 class="display-3">Contattaci</h1>
@@ -39,7 +49,8 @@
                 <textarea class="form-control" name="message" id="message" rows="3" placeholder="Messaggio"></textarea>
             </div>
 
-            <button class="btn btn-primary" type="submit"><i class="fas fa-envelope-open fa-lg fa-fw"></i> Invia</button>
+            <button class="btn btn-primary text-light" type="submit">
+                Invia</button>
         </form>
     </div>
 

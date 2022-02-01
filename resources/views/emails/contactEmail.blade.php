@@ -1,12 +1,13 @@
 @component('mail::message')
 # Messaggio:
+
 {{ $data['message'] }}
 
 User: {{ $data['name'] }}
 
 Email: {{ $data['email'] }}
 
-@component('mail::button', ['url' => '/'])
+@component('mail::button', ['url' => ''])
 Button Text
 @endcomponent
 

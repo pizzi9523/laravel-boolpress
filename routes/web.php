@@ -14,17 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('guest.welcome');
-})->name('welcome');
+Route::get('/', 'PageController@home')->name('welcome');
+Route::get('contacts', 'PageController@contact')->name('contacts');
 
 Route::resource('products', 'ProductController')->only(['index', 'show']);
 Route::resource('posts', 'PostController')->only(['index', 'show']);
 
 Route::get('categories/{category}/posts', 'CategoryController@posts')->name('categories.posts');
 Route::get('tags/{tag}/posts', 'TagController@posts')->name('tags.posts');
-Route::get('contacts', 'PageController@index')->name('contacts');
-Route::post('contacts', 'PageController@sendForm')->name('contacts.send');
+
+
+Route::post('contacts', 'Admin\ContactController@sendForm')->name('contacts.send');
 
 
 
@@ -37,4 +37,5 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     Route::resource('posts', 'PostController');
     Route::resource('categories', 'CategoryController');
     Route::resource('tags', 'TagController');
+    Route::resource('contacts', 'ContactController');
 });
