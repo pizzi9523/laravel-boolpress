@@ -13,6 +13,8 @@
                         <div class="card-body">
                             <h4 class="card-title">@{{ post.title }}</h4>
                             <p class="card-text">@{{ post.body }}</p>
+                            <p class="card-text">@{{ post.category.name }}</p>
+
                         </div>
                     </div>
                 </div>
