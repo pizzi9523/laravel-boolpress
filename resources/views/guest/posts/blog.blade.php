@@ -2,11 +2,10 @@
 
 @section('content')
 
-    <h1 class="text-center">SPA Blog</h1>
+    <h1 class="text-center">VUE Blog</h1>
 
     <div class="container">
         <div class="row">
-
             <div class="col-4 my-2" v-for="post in posts">
                 <div class="card">
                     <img class="card-img-top" :src="'storage/' + post.image" alt="">
@@ -17,7 +16,6 @@
                         <p class="card-text">
                             <span v-for="tag in post.tags">- @{{ tag.name }} </span>
                         </p>
-
                     </div>
                 </div>
             </div>
