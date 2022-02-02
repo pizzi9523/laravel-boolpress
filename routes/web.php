@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'PageController@home')->name('welcome');
 Route::get('contacts', 'PageController@contact')->name('contacts');
 
+Route::get('blog', function () {
+    return view('guest.posts.blog');
+});
+
 Route::resource('products', 'ProductController')->only(['index', 'show']);
 Route::resource('posts', 'PostController')->only(['index', 'show']);
 
