@@ -30,9 +30,10 @@
 
         <header class="bg-dark d-flex justify-content-around">
             @auth
-                <a class="navbar-brand text-light" href="{{ route('welcome') }}">
+                <a class="navbar-brand text-light" href="/">
                     BoolPress
                 </a>
+
                 <div class="d-flex">
                     <div class="text-white d-flex align-items-center">
                         <div class="name">
@@ -40,8 +41,9 @@
                         </div>
                     </div>
                     <div class="logout text-white">
-                        <a class="nav-link " href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                              document.getElementById('logout-form').submit();">
+                        <a class="nav-link " href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                                                                              document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
 

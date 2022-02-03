@@ -15,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route::get('/', 'PageController@home')->name('welcome');
-Route::get('/{any}', function () {
-    return view('guest.welcome');
-})->where('any', '.*');
+
+Auth::routes();
+
+
 
 Route::get('contacts', 'PageController@contact')->name('contacts');
 
@@ -36,7 +37,6 @@ Route::post('contacts', 'Admin\ContactController@sendForm')->name('contacts.send
 
 
 
-Auth::routes();
 
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
 
@@ -49,6 +49,9 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
 });
 
 
+Route::get('/{any}', function () {
+    return view('guest.welcome');
+})->where('any', '.*');
 
 Route::get('/', function () {
     return view('guest.welcome');

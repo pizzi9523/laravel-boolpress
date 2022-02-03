@@ -16,6 +16,12 @@
         </div>
       </div>
     </div>
+
+    <!-- <div class="pagination">
+      <router-link :to="links.next" class="btn btn-primary"
+        >Next Page</router-link
+      >
+    </div> -->
   </section>
 </template>
 
@@ -29,7 +35,8 @@ export default {
 
   mounted() {
     axios.get("/api/posts").then((response) => {
-      console.log(response.data.data);
+      //   console.log(response.data.data);
+
       this.posts = response.data.data;
     });
     console.log("Component mounted.");

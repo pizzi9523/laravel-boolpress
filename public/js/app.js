@@ -5171,6 +5171,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5181,7 +5187,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     axios.get("/api/posts").then(function (response) {
-      console.log(response.data.data);
+      //   console.log(response.data.data);
       _this.posts = response.data.data;
     });
     console.log("Component mounted.");
