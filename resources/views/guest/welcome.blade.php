@@ -1,7 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.spa')
 
-@section('content')
-
-    <h1 class="text-center">Welcome</h1>
-
+@section('app')
+    <App></App>
 @endsection

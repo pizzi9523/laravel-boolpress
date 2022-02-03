@@ -15,6 +15,11 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 const Home = Vue.component('Home', require('./pages/Home.vue').default);
+const About = Vue.component('About', require('./pages/About.vue').default);
+const Contacts = Vue.component('Contacts', require('./pages/Contacts.vue').default);
+const Blog = Vue.component('Blog', require('./pages/Blog.vue').default);
+
+
 export const router = new VueRouter({
     mode: 'history',
     routes: [
@@ -22,7 +27,22 @@ export const router = new VueRouter({
             path: '/',
             name: 'home',
             component: Home,
-        }
+        },
+        {
+            path: '/about',
+            name: 'about',
+            component: About,
+        },
+        {
+            path: '/contacts',
+            name: 'contacts',
+            component: Contacts,
+        },
+        {
+            path: '/blog',
+            name: 'blog',
+            component: Blog,
+        },
     ]
 });
 
@@ -57,8 +77,8 @@ const app = new Vue({
     },
     mounted() {
         Axios.get('/api/posts').then(response => {
-            console.log(response);
-            console.log(response.data.data);
+            // console.log(response);
+            // console.log(response.data.data);
             this.posts = response.data.data;
 
         }).catch(error => {

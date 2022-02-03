@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'PageController@home')->name('welcome');
+// Route::get('/', 'PageController@home')->name('welcome');
+Route::get('/{any}', function () {
+    return view('guest.welcome');
+})->where('any', '.*');
+
 Route::get('contacts', 'PageController@contact')->name('contacts');
 
 Route::get('blog', function () {
@@ -42,4 +46,10 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     Route::resource('categories', 'CategoryController');
     Route::resource('tags', 'TagController');
     Route::resource('contacts', 'ContactController')->only(['index', 'destroy']);
+});
+
+
+
+Route::get('/', function () {
+    return view('guest.welcome');
 });
