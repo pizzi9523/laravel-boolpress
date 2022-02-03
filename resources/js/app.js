@@ -7,8 +7,26 @@
 
 require('./bootstrap');
 const { default: Axios } = require('axios');
-
 window.Vue = require('vue');
+
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+
+Vue.use(VueRouter);
+
+const Home = Vue.component('Home', require('./pages/Home.vue').default);
+export const router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: Home,
+        }
+    ]
+});
+
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -22,6 +40,8 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('App', require('./App.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -31,6 +51,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    router,
     data: {
         posts: null,
     },
