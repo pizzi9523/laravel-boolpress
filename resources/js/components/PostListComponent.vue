@@ -2,13 +2,15 @@
   <section>
     <div class="container">
       <div class="row">
-        <div class="col-4" v-for="post in posts" :key="post.id">
-          .
+        <div class="col-4 my-4" v-for="post in posts" :key="post.id">
           <div class="card">
             <img class="card-img-top" :src="'storage/' + post.image" alt="" />
             <div class="card-body">
               <h4 class="card-title">{{ post.title }}</h4>
               <p class="card-text">{{ post.body }}</p>
+              <router-link :to="'/blog/' + post.id" class="btn btn-primary"
+                >View Post</router-link
+              >
             </div>
           </div>
         </div>
