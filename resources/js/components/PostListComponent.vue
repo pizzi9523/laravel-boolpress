@@ -15,6 +15,7 @@
           </div>
         </div>
       </div>
+      <pagination-component></pagination-component>
     </div>
 
     <!-- <div class="pagination">
@@ -26,20 +27,30 @@
 </template>
 
 <script>
+import PaginationComponent from "../components/PaginationComponent.vue";
+
 export default {
+  components: { PaginationComponent },
+
   data() {
     return {
       posts: null,
     };
   },
 
-  mounted() {
-    axios.get("/api/posts").then((response) => {
-      //   console.log(response.data.data);
+  methods: {
+    fetchGames() {
+      axios.get("/api/posts").then((response) => {
+        //   console.log(response.data.data);
 
-      this.posts = response.data.data;
-    });
-    console.log("Component mounted.");
+        this.posts = response.data.data;
+        console.log("Component mounted.");
+      });
+    },
+  },
+
+  mounted() {
+    this.fetchGames();
   },
 };
 </script>
