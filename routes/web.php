@@ -22,7 +22,7 @@ Auth::routes();
 
 Route::get('contacts', 'PageController@contact')->name('contacts');
 
-Route::get('blog', function () {
+Route::get('blogvue', function () {
     return view('guest.posts.blog');
 })->name('blog');
 
