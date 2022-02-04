@@ -17,16 +17,24 @@
       </div>
       <nav aria-label="...">
         <ul class="pagination">
-          <li class="page-item disabled">
-            <a class="page-link">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active" aria-current="page">
-            <a class="page-link" href="#">2</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
           <li class="page-item">
-            <a class="page-link" href="#">Next</a>
+            <span v-if="links.prev" class="page-link" @click="prevPostPage"
+              >Previous</span
+            >
+          </li>
+          <li
+            class="page-item"
+            :class="page == meta.current_page ? 'active' : ''"
+            v-for="page in meta.last_page"
+            aria-current="page"
+            :key="page"
+          >
+            <span class="page-link" @click="goToPage(page)">{{ page }}</span>
+          </li>
+          <li class="page-item">
+            <span v-if="links.next" class="page-link" @click="nextPostPage"
+              >Next</span
+            >
           </li>
         </ul>
       </nav>
@@ -45,16 +53,47 @@ export default {
   data() {
     return {
       posts: null,
+      links: null,
+      meta: null,
     };
   },
 
   methods: {
     fetchGames() {
       axios.get("/api/posts").then((response) => {
-        //   console.log(response.data.data);
+        console.log(response);
 
         this.posts = response.data.data;
+        this.links = response.data.links;
+        this.meta = response.data.meta;
+
         console.log("Component mounted.");
+        console.log(this.links);
+        console.log(this.meta);
+      });
+    },
+
+    nextPostPage() {
+      axios.get(this.links.next).then((response) => {
+        this.posts = response.data.data;
+        this.links = response.data.links;
+        this.meta = response.data.meta;
+      });
+    },
+
+    prevPostPage() {
+      axios.get(this.links.prev).then((response) => {
+        this.posts = response.data.data;
+        this.links = response.data.links;
+        this.meta = response.data.meta;
+      });
+    },
+
+    goToPage(page_param) {
+      axios.get(this.meta.path + "?page=" + page_param).then((response) => {
+        this.posts = response.data.data;
+        this.links = response.data.links;
+        this.meta = response.data.meta;
       });
     },
   },

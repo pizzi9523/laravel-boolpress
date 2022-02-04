@@ -5192,10 +5192,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      posts: null
+      posts: null,
+      links: null,
+      meta: null
     };
   },
   methods: {
@@ -5203,9 +5213,40 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get("/api/posts").then(function (response) {
-        //   console.log(response.data.data);
+        console.log(response);
         _this.posts = response.data.data;
+        _this.links = response.data.links;
+        _this.meta = response.data.meta;
         console.log("Component mounted.");
+        console.log(_this.links);
+        console.log(_this.meta);
+      });
+    },
+    nextPostPage: function nextPostPage() {
+      var _this2 = this;
+
+      axios.get(this.links.next).then(function (response) {
+        _this2.posts = response.data.data;
+        _this2.links = response.data.links;
+        _this2.meta = response.data.meta;
+      });
+    },
+    prevPostPage: function prevPostPage() {
+      var _this3 = this;
+
+      axios.get(this.links.prev).then(function (response) {
+        _this3.posts = response.data.data;
+        _this3.links = response.data.links;
+        _this3.meta = response.data.meta;
+      });
+    },
+    goToPage: function goToPage(page_param) {
+      var _this4 = this;
+
+      axios.get(this.meta.path + "?page=" + page_param).then(function (response) {
+        _this4.posts = response.data.data;
+        _this4.links = response.data.links;
+        _this4.meta = response.data.meta;
       });
     }
   },
@@ -41694,55 +41735,70 @@ var render = function () {
         0
       ),
       _vm._v(" "),
-      _vm._m(0),
+      _c("nav", { attrs: { "aria-label": "..." } }, [
+        _c(
+          "ul",
+          { staticClass: "pagination" },
+          [
+            _c("li", { staticClass: "page-item" }, [
+              _vm.links.prev
+                ? _c(
+                    "span",
+                    {
+                      staticClass: "page-link",
+                      on: { click: _vm.prevPostPage },
+                    },
+                    [_vm._v("Previous")]
+                  )
+                : _vm._e(),
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.meta.last_page, function (page) {
+              return _c(
+                "li",
+                {
+                  key: page,
+                  staticClass: "page-item",
+                  class: page == _vm.meta.current_page ? "active" : "",
+                  attrs: { "aria-current": "page" },
+                },
+                [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "page-link",
+                      on: {
+                        click: function ($event) {
+                          return _vm.goToPage(page)
+                        },
+                      },
+                    },
+                    [_vm._v(_vm._s(page))]
+                  ),
+                ]
+              )
+            }),
+            _vm._v(" "),
+            _c("li", { staticClass: "page-item" }, [
+              _vm.links.next
+                ? _c(
+                    "span",
+                    {
+                      staticClass: "page-link",
+                      on: { click: _vm.nextPostPage },
+                    },
+                    [_vm._v("Next")]
+                  )
+                : _vm._e(),
+            ]),
+          ],
+          2
+        ),
+      ]),
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("nav", { attrs: { "aria-label": "..." } }, [
-      _c("ul", { staticClass: "pagination" }, [
-        _c("li", { staticClass: "page-item disabled" }, [
-          _c("a", { staticClass: "page-link" }, [_vm._v("Previous")]),
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "page-item" }, [
-          _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
-            _vm._v("1"),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c(
-          "li",
-          {
-            staticClass: "page-item active",
-            attrs: { "aria-current": "page" },
-          },
-          [
-            _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
-              _vm._v("2"),
-            ]),
-          ]
-        ),
-        _vm._v(" "),
-        _c("li", { staticClass: "page-item" }, [
-          _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
-            _vm._v("3"),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "page-item" }, [
-          _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
-            _vm._v("Next"),
-          ]),
-        ]),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
