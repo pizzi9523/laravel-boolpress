@@ -17,10 +17,8 @@
       </div>
       <nav aria-label="...">
         <ul class="pagination">
-          <li class="page-item">
-            <span v-if="links.prev" class="page-link" @click="prevPostPage"
-              >Previous</span
-            >
+          <li class="page-item" :class="!links.prev ? 'disabled' : ''">
+            <span class="page-link" @click="prevPostPage">Previous</span>
           </li>
           <li
             class="page-item"
@@ -31,10 +29,8 @@
           >
             <span class="page-link" @click="goToPage(page)">{{ page }}</span>
           </li>
-          <li class="page-item">
-            <span v-if="links.next" class="page-link" @click="nextPostPage"
-              >Next</span
-            >
+          <li class="page-item" :class="!links.next ? 'disabled' : ''">
+            <span class="page-link" @click="nextPostPage">Next</span>
           </li>
         </ul>
       </nav>
@@ -61,15 +57,15 @@ export default {
   methods: {
     fetchGames() {
       axios.get("/api/posts").then((response) => {
-        console.log(response);
+        // console.log(response);
 
         this.posts = response.data.data;
         this.links = response.data.links;
         this.meta = response.data.meta;
 
         console.log("Component mounted.");
-        console.log(this.links);
-        console.log(this.meta);
+        // console.log(this.links);
+        // console.log(this.meta);
       });
     },
 

@@ -5196,10 +5196,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5213,13 +5209,12 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get("/api/posts").then(function (response) {
-        console.log(response);
+        // console.log(response);
         _this.posts = response.data.data;
         _this.links = response.data.links;
         _this.meta = response.data.meta;
-        console.log("Component mounted.");
-        console.log(_this.links);
-        console.log(_this.meta);
+        console.log("Component mounted."); // console.log(this.links);
+        // console.log(this.meta);
       });
     },
     nextPostPage: function nextPostPage() {
@@ -41740,18 +41735,20 @@ var render = function () {
           "ul",
           { staticClass: "pagination" },
           [
-            _c("li", { staticClass: "page-item" }, [
-              _vm.links.prev
-                ? _c(
-                    "span",
-                    {
-                      staticClass: "page-link",
-                      on: { click: _vm.prevPostPage },
-                    },
-                    [_vm._v("Previous")]
-                  )
-                : _vm._e(),
-            ]),
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: !_vm.links.prev ? "disabled" : "",
+              },
+              [
+                _c(
+                  "span",
+                  { staticClass: "page-link", on: { click: _vm.prevPostPage } },
+                  [_vm._v("Previous")]
+                ),
+              ]
+            ),
             _vm._v(" "),
             _vm._l(_vm.meta.last_page, function (page) {
               return _c(
@@ -41779,18 +41776,20 @@ var render = function () {
               )
             }),
             _vm._v(" "),
-            _c("li", { staticClass: "page-item" }, [
-              _vm.links.next
-                ? _c(
-                    "span",
-                    {
-                      staticClass: "page-link",
-                      on: { click: _vm.nextPostPage },
-                    },
-                    [_vm._v("Next")]
-                  )
-                : _vm._e(),
-            ]),
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: !_vm.links.next ? "disabled" : "",
+              },
+              [
+                _c(
+                  "span",
+                  { staticClass: "page-link", on: { click: _vm.nextPostPage } },
+                  [_vm._v("Next")]
+                ),
+              ]
+            ),
           ],
           2
         ),
