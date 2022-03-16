@@ -41744,7 +41744,14 @@ var render = function () {
               [
                 _c(
                   "span",
-                  { staticClass: "page-link", on: { click: _vm.prevPostPage } },
+                  {
+                    staticClass: "page-link",
+                    on: {
+                      click: function ($event) {
+                        return _vm.prevPostPage()
+                      },
+                    },
+                  },
                   [_vm._v("Previous")]
                 ),
               ]
@@ -41785,7 +41792,14 @@ var render = function () {
               [
                 _c(
                   "span",
-                  { staticClass: "page-link", on: { click: _vm.nextPostPage } },
+                  {
+                    staticClass: "page-link",
+                    on: {
+                      click: function ($event) {
+                        return _vm.nextPostPage()
+                      },
+                    },
+                  },
                   [_vm._v("Next")]
                 ),
               ]
@@ -41930,7 +41944,7 @@ var render = function () {
         _c("div", { staticClass: "card" }, [
           _c("img", {
             staticClass: "card-img-top",
-            attrs: { src: "/storage/" + _vm.post.image, alt: "" },
+            attrs: { src: "'/storage/' + post.image", alt: "" },
           }),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [

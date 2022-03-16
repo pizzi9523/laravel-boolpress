@@ -18,7 +18,7 @@
       <nav aria-label="...">
         <ul class="pagination">
           <li class="page-item" :class="!links.prev ? 'disabled' : ''">
-            <span class="page-link" @click="prevPostPage">Previous</span>
+            <span class="page-link" @click="prevPostPage()">Previous</span>
           </li>
           <li
             class="page-item"
@@ -30,7 +30,7 @@
             <span class="page-link" @click="goToPage(page)">{{ page }}</span>
           </li>
           <li class="page-item" :class="!links.next ? 'disabled' : ''">
-            <span class="page-link" @click="nextPostPage">Next</span>
+            <span class="page-link" @click="nextPostPage()">Next</span>
           </li>
         </ul>
       </nav>
